@@ -40,8 +40,8 @@ static const uop uops1[] = { func1, func2, func3 };
 static void funcA(job2* self) {
 	self->job1.finish = 0;
 	printf("count=%d\n", self->count++);
-	job_fetch(&self->job1, (uop*)uops1);
-	job_invoke(&self->job, &self->job1);
+	job_fetch((job*)&self->job1, (uop*)uops1);
+	job_invoke((job*)&self->job, (job*)&self->job1);
 	job_next((job*)self, 1);
 }
 
