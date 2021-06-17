@@ -25,7 +25,7 @@ static void func3(job1* self) {
 	self->finish = 1;
 }
 
-static func2(job1* self) {
+static void func2(job1* self) {
 	if (self->count < 10) {
 		printf("count=%d\n", self->count++);
 		job_pending((job*)self);
@@ -35,7 +35,7 @@ static func2(job1* self) {
 	}
 }
 
-static const uop uops1[] = { func1, func2, func3 };
+static const uop uops1[] = { (uop)func1, (uop)func2, (uop)func3 };
 
 static void funcA(job2* self) {
 	self->job1.finish = 0;
@@ -52,7 +52,7 @@ static void funcB(job2* self) {
 		job_pending((job*)self);
 }
 
-static const uop uops2[] = { funcA, funcB };
+static const uop uops2[] = { (uop)funcA, (uop)funcB };
 
 
 int main(void) {
